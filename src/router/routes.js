@@ -10,7 +10,7 @@ export default [
   },
   {
     path: '/todo-app/:filter?',
-    to: '//todo-app',
+    to: '/todo-app/',
     name: 'TodoApp',
     component: TodoApp
   }
