@@ -16,10 +16,10 @@
         <strong>{{activeCount}}</strong> item{{activeCount > 1 ? 's' : ''}} left</span>
       <ul class="filters">
         <li v-for="(filter, index) of filters" :key="index">
-          <router-link :to="'/todo-app/'+filter" :class="{selected: currentFilter === filter}">{{filter|capitalizeFilter}}</router-link>
+          <router-link replace :to="'/todo-app/'+filter" :class="{selected: currentFilter === filter}">{{filter|capitalizeFilter}}</router-link>
         </li>
       </ul>
-      <button class="clear-completed" @click="clearHandler" v-show="items.length - activeCount > 0">Clear completed</button>
+      <button class="clear-completed" @click="clearHandler" v-show="completedCount">Clear completed({{completedCount}})</button>
     </footer>
   </section>
 </template>
@@ -40,6 +40,9 @@ export default {
     },
     activeCount() {
       return this.getActiveItems().length
+    },
+    completedCount() {
+      return this.items.length - this.activeCount
     }
   },
   components: {
